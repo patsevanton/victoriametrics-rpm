@@ -2,7 +2,7 @@
 
 Name:    victoriametrics
 Version: 1.18.6
-Release: 3
+Release: 4
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
@@ -52,4 +52,3 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/%{name}
 %if %{use_systemd}
 %{_unitdir}/%{name}.service
 %endif
-
