@@ -52,4 +52,3 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/%{name}
 %if %{use_systemd}
 %{_unitdir}/%{name}.service
 %endif
-
