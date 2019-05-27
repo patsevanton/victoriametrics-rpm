@@ -3,7 +3,7 @@ Description=High-performance, cost-effective and scalable time series database, 
 After=network.target
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/usr/local/bin/victoriametrics -storageDataPath=/var/lib/victoria-metrics-data start
 ExecStop=/usr/local/bin/victoriametrics stop
 Restart=on-abort
