@@ -4,8 +4,7 @@ After=network.target
 
 [Service]
 Type=forking
-Environment=storageDataPath=/var/lib/victoria-metrics-data
-ExecStart=/usr/local/bin/victoriametrics start
+ExecStart=/usr/local/bin/victoriametrics -storageDataPath=/var/lib/victoria-metrics-data start
 ExecStop=/usr/local/bin/victoriametrics stop
 Restart=on-abort
 LimitNOFILE=65536
