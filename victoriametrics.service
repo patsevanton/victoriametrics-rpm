@@ -4,10 +4,13 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/victoriametrics -storageDataPath=/var/lib/victoria-metrics-data start
-ExecStop=/usr/local/bin/victoriametrics stop
+StartLimitBurst=5
+StartLimitInterval=0
 Restart=on-abort
+ExecStart=/usr/local/bin/victoriametrics -storageDataPath=/var/lib/victoria-metrics-data start
+ExecStop=/bin/kill -s SIGTERM $MAINPID
 LimitNOFILE=65536
+LimitNPROC=32000
 
 [Install]
 WantedBy=multi-user.target
