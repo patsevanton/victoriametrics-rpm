@@ -10,11 +10,15 @@ Group=victoriametrics
 StartLimitBurst=5
 StartLimitInterval=0
 Restart=on-failure
-ExecStart=/usr/local/bin/victoriametrics -storageDataPath=/var/lib/victoria-metrics-data start
+RestartSec=1
+EnvironmentFile=-/etc/default/victoriametrics.conf
+ExecStart=/usr/local/bin/victoriametrics $ARGS
 ExecStop=/bin/kill -s SIGTERM $MAINPID
 ExecReload=/bin/kill -HUP $MAINPID
-LimitNOFILE=65536
-LimitNPROC=32000
+# https://github.com/prometheus/prometheus/issues/3446
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
 
 [Install]
 WantedBy=multi-user.target
