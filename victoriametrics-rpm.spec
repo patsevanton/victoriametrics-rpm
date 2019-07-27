@@ -1,5 +1,3 @@
-%global _prefix /usr/local
-
 Name:    victoriametrics
 Version: 1.23.0
 Release: 3
