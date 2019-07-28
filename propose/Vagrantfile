@@ -1,0 +1,31 @@
+$filrewall_selinux_git_rpm_build_rpmdevtools = <<-SCRIPT
+echo "Disable Firewall"
+sudo systemctl stop firewalld && systemctl disable firewalld
+echo "Disable Selinux"
+sudo setenforce 0
+sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
+sudo yum install -y git rpm-build rpmdevtools
+SCRIPT
+
+$download_git_repo_build_victoriametrics = <<-SCRIPT
+echo "download_git_repo_build_victoriametrics"
+git clone https://github.com/patsevanton/victoriametrics-rpm.git
+cd victoriametrics-rpm/propose
+./build.sh
+SCRIPT
+
+Vagrant.configure("2") do |config|
+
+    config.vm.define "server" do |server|
+      server.vm.hostname = "server"
+      server.vm.define "server"
+      server.vm.box_download_insecure = true
+      server.vm.box = "centos/7"
+      server.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+      server.vm.provision "shell", inline: $filrewall_selinux_git_rpm_build_rpmdevtools
+      server.vm.provision "shell", inline: $download_git_repo_build_victoriametrics
+    end
+
+end
