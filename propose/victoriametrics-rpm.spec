@@ -31,6 +31,7 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
     %{buildroot}%{_unitdir}/%{name}.service
 %endif
 
+%pre
 /usr/bin/getent group victoriametrics || /usr/sbin/groupadd -r victoriametrics
 /usr/bin/getent passwd victoriametrics || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /sbin/nologin victoriametrics
 
