@@ -36,6 +36,7 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
 /usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
+__mkdir /var/lib/victoria-metrics-data
 /usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
 /usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data
