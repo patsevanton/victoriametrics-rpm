@@ -15,4 +15,4 @@ mkdir {RPMS,SRPMS,BUILD,SOURCES,SPECS}
 
 cp victoriametrics.* SOURCES
 
-rpmbuild -bb --define "_topdir $PWD" victoriametrics.service
+rpmbuild -bb --define "_topdir $PWD" victoriametrics-rpm.spec
