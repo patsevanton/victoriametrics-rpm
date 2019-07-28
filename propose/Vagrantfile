@@ -1,6 +1,4 @@
 $filrewall_selinux_git_rpm_build_rpmdevtools = <<-SCRIPT
-echo "Disable Firewall"
-sudo systemctl stop firewalld && systemctl disable firewalld
 sudo yum install -y git rpm-build rpmdevtools policycoreutils-python
 SCRIPT
 
