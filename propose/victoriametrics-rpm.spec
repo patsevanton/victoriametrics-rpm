@@ -51,7 +51,6 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %endif
 
 %postun
-/usr/sbin/userdel victoriametrics
 %if %use_systemd
 /usr/bin/systemctl daemon-reload
 %endif
