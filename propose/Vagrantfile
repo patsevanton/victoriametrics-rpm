@@ -9,7 +9,7 @@ echo "download_git_repo_build_victoriametrics"
 git clone https://github.com/patsevanton/victoriametrics-rpm.git
 cd victoriametrics-rpm/propose
 ./build.sh
-sudo yum install -y victoriametrics-rpm/propose/RPMS/x86_64/victoriametrics-1.23.0-3.x86_64.rpm
+sudo yum install -y RPMS/x86_64/victoriametrics-1.23.0-3.x86_64.rpm
 SCRIPT
 
 Vagrant.configure("2") do |config|
