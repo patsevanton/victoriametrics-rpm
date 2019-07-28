@@ -33,7 +33,7 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
-/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /sbin/nologin -g victoriametrics victoriametrics
+/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
 
 %post
 %if %use_systemd
