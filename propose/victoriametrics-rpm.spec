@@ -7,6 +7,7 @@ Group:   Development Tools
 License: ASL 2.0
 URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-v%{version}.tar.gz
 Source0: %{name}.service
+Source1: victoriametrics.conf
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent
 Requires(postun): /usr/sbin/userdel
 
