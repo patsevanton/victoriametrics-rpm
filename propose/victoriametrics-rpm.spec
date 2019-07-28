@@ -1,5 +1,3 @@
-%global _prefix /usr/local
-
 Name:    victoriametrics
 Version: 1.23.0
 Release: 3
@@ -22,7 +20,7 @@ tar -zxf victoria-metrics.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
-cp victoria-metrics-prod %{buildroot}%{_bindir}/%{name}
+cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 
 %if %{use_systemd}
@@ -47,9 +45,8 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/%{name}
 %endif
 
 %files
-%{_bindir}/%{name}
+%{_bindir}/victoria-metrics-prod
 /var/lib/victoria-metrics-data
 %if %{use_systemd}
 %{_unitdir}/%{name}.service
 %endif
-
