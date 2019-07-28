@@ -8,7 +8,7 @@ License: ASL 2.0
 URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-v%{version}.tar.gz
 Source0: %{name}.service
 Source1: victoriametrics.conf
-Requires(pre): /usr/sbin/useradd, /usr/bin/getent
+Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
 # Use systemd for fedora >= 18, rhel >=7, SUSE >= 12 SP1 and openSUSE >= 42.1
