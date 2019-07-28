@@ -27,7 +27,6 @@ tar -zxf victoria-metrics.tar.gz
 cp %{SOURCE1} %{buildroot}/etc/default/
 cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
-
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} \
