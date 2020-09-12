@@ -1,5 +1,5 @@
 Name:    victoriametrics
-Version: 1.40.1
+Version: 1.41.0
 Release: 1
 Summary: The best long-term remote storage for Prometheus
 
