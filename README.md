@@ -16,3 +16,4 @@ yum -y install victoriametrics
 
 systemctl start victoriametrics
 ```
+
