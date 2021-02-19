@@ -1,11 +1,12 @@
 Name:    victoriametrics
-Version: 1.54.0
-Release: 2
+Version: 1.53.0
+Release: 1
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
 License: ASL 2.0
-URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-v%{version}.tar.gz
+URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-amd64-v%{version}.tar.gz
+
 Source0: %{name}.service
 Source1: victoriametrics.conf
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
