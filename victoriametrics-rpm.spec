@@ -1,6 +1,6 @@
 Name:    victoriametrics
 Version: 1.64.1
-Release: 1
+Release: 2
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
@@ -21,6 +21,8 @@ VictoriaMetrics - the best long-term remote storage for Prometheus
 %prep
 curl -L %{url} > victoria-metrics.tar.gz
 tar -zxf victoria-metrics.tar.gz
+curl -L https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz > vmutils.tar.gz
+tar -zxf vmutils.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
@@ -33,6 +35,12 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m644 %{SOURCE0} \
     %{buildroot}%{_unitdir}/%{name}.service
 %endif
+cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
+cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
+cp vmauth-prod %{buildroot}%{_bindir}/vmauth-prod
+cp vmbackup-prod %{buildroot}%{_bindir}/vmbackup-prod
+cp vmctl-prod %{buildroot}%{_bindir}/vmctl-prod
+cp vmrestore-prod %{buildroot}%{_bindir}/vmrestore-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
@@ -64,3 +72,17 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %if %{use_systemd}
 %{_unitdir}/%{name}.service
 %endif
+
+%package vmutils
+Summary: Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  vmrestore-prod
+
+%description vmutils
+VictoriaMetrics - the best long-term remote storage for Prometheus
+
+%files vmutils
+%{_bindir}/vmagent-prod
+%{_bindir}/vmalert-prod
+%{_bindir}/vmauth-prod
+%{_bindir}/vmbackup-prod
+%{_bindir}/vmctl-prod
+%{_bindir}/vmrestore-prod
