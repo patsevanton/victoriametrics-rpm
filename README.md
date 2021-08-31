@@ -16,6 +16,8 @@ yum makecache
 yum -y install victoriametrics
 
 systemctl start victoriametrics
+
+yum -y install victoriametrics-vmutils
 ```
 
 ## Installation with dnf
@@ -31,5 +33,7 @@ dnf makecache
 dnf -y install victoriametrics
 
 systemctl start victoriametrics
+
+dnf -y install victoriametrics-vmutils
 ```
 
