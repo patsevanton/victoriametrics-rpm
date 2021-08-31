@@ -18,6 +18,8 @@ yum -y install victoriametrics
 systemctl start victoriametrics
 
 yum -y install victoriametrics-vmutils
+
+yum -y install victoriametrics-cluster
 ```
 
 ## Installation with dnf
@@ -35,5 +37,7 @@ dnf -y install victoriametrics
 systemctl start victoriametrics
 
 dnf -y install victoriametrics-vmutils
+
+dnf -y install victoriametrics-cluster
 ```
 
