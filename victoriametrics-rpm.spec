@@ -97,8 +97,6 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 %{_bindir}/vmctl-prod
 %{_bindir}/vmrestore-prod
 
-###
-
 %package cluster
 Summary: Package for vminsert-prod vmselect-prod vmstorage-prod
 
