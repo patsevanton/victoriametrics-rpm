@@ -18,7 +18,7 @@ Requires(postun): /usr/sbin/userdel
 %if %{use_systemd}
 Requires: systemd
 BuildRequires: systemd
-%else
+%endif
 
 %description
 VictoriaMetrics - the best long-term remote storage for Prometheus
