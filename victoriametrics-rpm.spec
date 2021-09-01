@@ -15,6 +15,9 @@ Source4: vmagent.service
 Source5: vmalert.conf
 Source6: alerts.yml
 Source7: vmalert.service
+Source8: vmauth.conf
+Source9: config.yml
+Source10: vmauth.service
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -42,11 +45,14 @@ tar -zxf victoria-metrics-cluster.tar.gz
 %{__install} -m 0755 -d %{buildroot}/etc/default/
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmalert
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmauth
 cp %{SOURCE1} %{buildroot}/etc/default/
 cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE3} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE5} %{buildroot}/etc/victoriametrics/vmalert/
 cp %{SOURCE6} %{buildroot}/etc/victoriametrics/vmalert/
+cp %{SOURCE8} %{buildroot}/etc/victoriametrics/vmauth/
+cp %{SOURCE9} %{buildroot}/etc/victoriametrics/vmauth/
 cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
@@ -54,6 +60,7 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
 %{__install} -m644 %{SOURCE4} %{buildroot}%{_unitdir}/vmagent.service
 %{__install} -m644 %{SOURCE7} %{buildroot}%{_unitdir}/vmalert.service
+%{__install} -m644 %{SOURCE10} %{buildroot}%{_unitdir}/vmauth.service
 %endif
 cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
@@ -111,13 +118,17 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 %{_bindir}/vmrestore-prod
 %dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmagent
 %dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmalert
+%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmauth
 /etc/victoriametrics/vmagent/vmagent.conf
 /etc/victoriametrics/vmagent/prometheus.yml
 /etc/victoriametrics/vmalert/vmalert.conf
 /etc/victoriametrics/vmalert/alerts.yml
+/etc/victoriametrics/vmauth/vmauth.conf
+/etc/victoriametrics/vmauth/config.yml
 %if %{use_systemd}
 %{_unitdir}/vmagent.service
 %{_unitdir}/vmalert.service
+%{_unitdir}/vmauth.service
 %endif
 
 %package cluster
