@@ -41,6 +41,7 @@ tar -zxf victoria-metrics-cluster.tar.gz
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
 %{__install} -m 0755 -d %{buildroot}/etc/default/
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmalert
 cp %{SOURCE1} %{buildroot}/etc/default/
 cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE3} %{buildroot}/etc/victoriametrics/vmagent/
