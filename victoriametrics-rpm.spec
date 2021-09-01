@@ -1,6 +1,6 @@
 Name:    victoriametrics
 Version: 1.64.1
-Release: 5
+Release: 6
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
@@ -79,6 +79,9 @@ cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 /usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
 /usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data
+/usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data"
+/usr/bin/echo "THIS MAY TAKE SOME TIME"
+/usr/bin/chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data
 
 %post
 %if %use_systemd
@@ -111,6 +114,7 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 
 %files vmutils
 %{_bindir}/vmagent-prod
+%dir %attr(0775, victoriametrics, victoriametrics) /var/lib/vmagent-remotewrite-data
 %{_bindir}/vmalert-prod
 %{_bindir}/vmauth-prod
 %{_bindir}/vmbackup-prod
