@@ -9,6 +9,9 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 
 Source0: %{name}.service
 Source1: victoriametrics.conf
+Source2: vmagent/vmagent.conf
+Source3: vmagent/prometheus.yml
+Source4: vmagent/vmagent.service
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -34,13 +37,18 @@ tar -zxf victoria-metrics-cluster.tar.gz
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
 %{__install} -m 0755 -d %{buildroot}/etc/default/
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
 cp %{SOURCE1} %{buildroot}/etc/default/
+cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
+cp %{SOURCE3} %{buildroot}/etc/victoriametrics/vmagent/
 cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} \
     %{buildroot}%{_unitdir}/%{name}.service
+%{__install} -m644 %{SOURCE4} \
+    %{buildroot}%{_unitdir}/vmagent.service
 %endif
 cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
@@ -96,6 +104,12 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 %{_bindir}/vmbackup-prod
 %{_bindir}/vmctl-prod
 %{_bindir}/vmrestore-prod
+%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmagent
+%{_bindir}/etc/victoriametrics/vmagent/vmagent.conf
+%{_bindir}/etc/victoriametrics/vmagent/prometheus.yml
+%if %{use_systemd}
+%{_unitdir}/vmagent.service
+%endif
 
 %package cluster
 Summary: Package for vminsert-prod vmselect-prod vmstorage-prod
