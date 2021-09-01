@@ -117,6 +117,7 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 /etc/victoriametrics/vmalert/alerts.yml
 %if %{use_systemd}
 %{_unitdir}/vmagent.service
+%{_unitdir}/vmalert.service
 %endif
 
 %package cluster
