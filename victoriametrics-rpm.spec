@@ -105,8 +105,8 @@ Package for vmagent-prod  vmalert-prod  vmauth-prod  vmbackup-prod  vmctl-prod  
 %{_bindir}/vmctl-prod
 %{_bindir}/vmrestore-prod
 %dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmagent
-%{_bindir}/etc/victoriametrics/vmagent/vmagent.conf
-%{_bindir}/etc/victoriametrics/vmagent/prometheus.yml
+/etc/victoriametrics/vmagent/vmagent.conf
+/etc/victoriametrics/vmagent/prometheus.yml
 %if %{use_systemd}
 %{_unitdir}/vmagent.service
 %endif
