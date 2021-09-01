@@ -9,9 +9,9 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 
 Source0: %{name}.service
 Source1: victoriametrics.conf
-Source2: vmagent/vmagent.conf
-Source3: vmagent/prometheus.yml
-Source4: vmagent/vmagent.service
+Source2: vmagent.conf
+Source3: prometheus.yml
+Source4: vmagent.service
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
