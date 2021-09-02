@@ -1,7 +1,7 @@
 Name:    victoriametrics
 Version: 1.65.0
 Release: 2
-Summary: The best long-term remote storage for Prometheus
+Summary: VictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.
 
 Group:   Development Tools
 License: ASL 2.0
@@ -38,7 +38,7 @@ BuildRequires: systemd
 %endif
 
 %description
-VictoriaMetrics - the best long-term remote storage for Prometheus
+VictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.
 
 %prep
 curl -L %{url} > victoria-metrics.tar.gz
@@ -102,9 +102,9 @@ cp vmselect-prod %{buildroot}%{_bindir}/vmselect-prod
 /usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
 /usr/bin/chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data
-/usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data/storage"
+/usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
-/usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data/storage
+/usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data
 
 %post
 %if %use_systemd
