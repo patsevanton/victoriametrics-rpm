@@ -1,6 +1,6 @@
 Name:    victoriametrics
-Version: 1.64.1
-Release: 6
+Version: 1.65.
+Release: 2
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
@@ -18,6 +18,14 @@ Source7: vmalert.service
 Source8: vmauth.conf
 Source9: config.yml
 Source10: vmauth.service
+# cluster
+Source11: vmstorage.service
+Source12: vmstorage.conf
+Source13: vminsert.service
+Source14: vminsert.conf
+Source15: vmselect.service
+Source16: vmselect.conf
+# 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -42,17 +50,24 @@ tar -zxf victoria-metrics-cluster.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
-%{__install} -m 0755 -d %{buildroot}/etc/default/
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/single
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmalert
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmauth
-cp %{SOURCE1} %{buildroot}/etc/default/
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmcluster
+cp %{SOURCE1} %{buildroot}/etc/victoriametrics/single/
 cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE3} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE5} %{buildroot}/etc/victoriametrics/vmalert/
 cp %{SOURCE6} %{buildroot}/etc/victoriametrics/vmalert/
 cp %{SOURCE8} %{buildroot}/etc/victoriametrics/vmauth/
 cp %{SOURCE9} %{buildroot}/etc/victoriametrics/vmauth/
+cp %{SOURCE11} %{buildroot}/etc/victoriametrics/vmcluster/
+cp %{SOURCE12} %{buildroot}/etc/victoriametrics/vmcluster/
+cp %{SOURCE13} %{buildroot}/etc/victoriametrics/vmcluster/
+cp %{SOURCE14} %{buildroot}/etc/victoriametrics/vmcluster/
+cp %{SOURCE15} %{buildroot}/etc/victoriametrics/vmcluster/
+cp %{SOURCE16} %{buildroot}/etc/victoriametrics/vmcluster/
 cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
@@ -61,6 +76,9 @@ cp victoria-metrics-prod %{buildroot}%{_bindir}/victoria-metrics-prod
 %{__install} -m644 %{SOURCE4} %{buildroot}%{_unitdir}/vmagent.service
 %{__install} -m644 %{SOURCE7} %{buildroot}%{_unitdir}/vmalert.service
 %{__install} -m644 %{SOURCE10} %{buildroot}%{_unitdir}/vmauth.service
+%{__install} -m644 %{SOURCE11} %{buildroot}%{_unitdir}/vmstorage.service
+%{__install} -m644 %{SOURCE13} %{buildroot}%{_unitdir}/vminsert.service
+%{__install} -m644 %{SOURCE15} %{buildroot}%{_unitdir}/vmauth.service
 %endif
 cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
@@ -68,20 +86,25 @@ cp vmauth-prod %{buildroot}%{_bindir}/vmauth-prod
 cp vmbackup-prod %{buildroot}%{_bindir}/vmbackup-prod
 cp vmctl-prod %{buildroot}%{_bindir}/vmctl-prod
 cp vmrestore-prod %{buildroot}%{_bindir}/vmrestore-prod
+cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 cp vminsert-prod %{buildroot}%{_bindir}/vminsert-prod
 cp vmselect-prod %{buildroot}%{_bindir}/vmselect-prod
-cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
 /usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
 %{__mkdir} -p /var/lib/victoria-metrics-data
+%{__mkdir} -p /var/lib/vmagent-remotewrite-data
+%{__mkdir} -p /var/lib/victoria-metrics-cluster-data/storage
 /usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
 /usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-data
 /usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data"
 /usr/bin/echo "THIS MAY TAKE SOME TIME"
 /usr/bin/chown -R victoriametrics:victoriametrics /var/lib/vmagent-remotewrite-data
+/usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data/storage"
+/usr/bin/echo "THIS MAY TAKE SOME TIME"
+/usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data/storage
 
 %post
 %if %use_systemd
@@ -99,7 +122,7 @@ cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 %endif
 
 %files
-%config /etc/default/victoriametrics.conf
+%config /etc/victoriametrics/single/victoriametrics.conf
 %{_bindir}/victoria-metrics-prod
 %dir %attr(0775, victoriametrics, victoriametrics) /var/lib/victoria-metrics-data
 %if %{use_systemd}
@@ -142,6 +165,12 @@ Summary: Package for vminsert-prod vmselect-prod vmstorage-prod
 Package for vminsert-prod vmselect-prod vmstorage-prod
 
 %files cluster
+%dir %attr(0775, victoriametrics, victoriametrics) /var/lib/victoria-metrics-cluster-data/storage
+%{_bindir}/vmstorage-prod
 %{_bindir}/vminsert-prod
 %{_bindir}/vmselect-prod
-%{_bindir}/vmstorage-prod
+%if %{use_systemd}
+%{_unitdir}/vmstorage.service
+%{_unitdir}/vminsert.service
+%{_unitdir}/vmselect.service
+%endif
