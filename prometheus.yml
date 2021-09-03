@@ -1,3 +1,31 @@
+# https://docs.victoriametrics.com/
+#
+# https://github.com/VictoriaMetrics/VictoriaMetrics/blob/cluster/deployment/docker/prometheus.yml
+#
+# Example to use vmagent with VictoriaMetrics Cluster 
+#
+# global:
+#   scrape_interval:     1s
+#   evaluation_interval: 1s
+#
+# scrape_configs:
+#   - job_name: 'vmagent'
+#     static_configs:
+#       - targets: ['vmagent:8429']
+#   - job_name: 'vmalert'
+#     static_configs:
+#       - targets: ['vmalert:8880']
+#   - job_name: 'vminsert'
+#     static_configs:
+#       - targets: ['vminsert:8480']
+#   - job_name: 'vmselect'
+#     static_configs:
+#       - targets: ['vmselect:8481']
+#   - job_name: 'vmstorage'
+#     static_configs:
+#       - targets: ['vmstorage:8482']
+#
+# Example to use vmagent with VictoriaMetrics Single 
 global:
   scrape_interval: 10s
 
