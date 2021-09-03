@@ -1,7 +1,7 @@
-Name:    vmagent
+Name:    vmalert
 Version: 1.65.0
 Release: 3
-Summary: vmagent is a tiny but mighty agent which helps you collect metrics from various sources and store them in VictoriaMetrics or any other Prometheus-compatible storage systems that support the remote_write protocol.
+Summary: vmalert executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 Group:   Development Tools
 License: ASL 2.0
@@ -9,7 +9,7 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 
 Source0: %{name}.service
 Source1: %{name}.conf
-Source2: prometheus.yml
+Source2: alerts.yml
 # 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
@@ -23,7 +23,7 @@ BuildRequires: systemd
 %endif
 
 %description
-vmagent is a tiny but mighty agent which helps you collect metrics from various sources and store them in VictoriaMetrics or any other Prometheus-compatible storage systems that support the remote_write protocol.
+vmalert executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 %prep
 curl -L %{url} > vmutils.tar.gz
@@ -31,15 +31,15 @@ tar -zxf vmutils.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
-%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
-cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmagent/
-cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmalert
+cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmalert/
+cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmalert/
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
 %endif
-cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
+cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
@@ -60,10 +60,10 @@ cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 %endif
 
 %files
-%{_bindir}/vmagent-prod
-%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmagent
-%config /etc/victoriametrics/vmagent/vmagent.conf
-%config /etc/victoriametrics/vmagent/prometheus.yml
+%{_bindir}/vmalert-prod
+%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmalert
+%config /etc/victoriametrics/vmalert/vmalert.conf
+%config /etc/victoriametrics/vmalert/prometheus.yml
 %if %{use_systemd}
-%{_unitdir}/vmagent.service
+%{_unitdir}/vmalert.service
 %endif
