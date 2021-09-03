@@ -1,7 +1,7 @@
-Name:    vmalert
+Name:    vmauth
 Version: 1.65.0
 Release: 3
-Summary: vmalert executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
+Summary: vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 Group:   Development Tools
 License: ASL 2.0
@@ -9,7 +9,7 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 
 Source0: %{name}.service
 Source1: %{name}.conf
-Source2: alerts.yml
+Source2: config.yml
 # 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
@@ -23,7 +23,7 @@ BuildRequires: systemd
 %endif
 
 %description
-vmalert executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
+vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 %prep
 curl -L %{url} > vmutils.tar.gz
@@ -31,15 +31,15 @@ tar -zxf vmutils.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
-%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmalert
-cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmalert/
-cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmalert/
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmauth
+cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmauth/
+cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmauth/
 %{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
 %endif
-cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
+cp vmauth-prod %{buildroot}%{_bindir}/vmauth-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
@@ -60,10 +60,10 @@ cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
 %endif
 
 %files
-%{_bindir}/vmalert-prod
-%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmalert
-%config /etc/victoriametrics/vmalert/vmalert.conf
-%config /etc/victoriametrics/vmalert/alerts.yml
+%{_bindir}/vmauth-prod
+%dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmauth
+%config /etc/victoriametrics/vmauth/vmauth.conf
+%config /etc/victoriametrics/vmauth/config.yml
 %if %{use_systemd}
-%{_unitdir}/vmalert.service
+%{_unitdir}/vmauth.service
 %endif
