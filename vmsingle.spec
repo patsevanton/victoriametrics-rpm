@@ -8,7 +8,7 @@ License: ASL 2.0
 URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-amd64-v%{version}.tar.gz
 
 Source0: %{name}.service
-Source1: %{name}.conf
+Source1: victoriametrics.conf
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
