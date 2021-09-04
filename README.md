@@ -9,7 +9,7 @@ Support CentOS 6, CentOS 7, Oraclelinux 7
 ```
 yum -y install yum-plugin-copr
 
-yum copr enable antonpatsev/VictoriaMetrics
+yum -y copr enable antonpatsev/VictoriaMetrics
 
 yum makecache
 
@@ -30,7 +30,7 @@ Support CentOS 8, CentOS-stream 8, CentOS-stream 9, Oraclelinux 8, Fedora 33,34,
 ```
 dnf -y install yum-plugin-copr
 
-dnf copr enable antonpatsev/VictoriaMetrics
+dnf -y copr enable antonpatsev/VictoriaMetrics
 
 dnf makecache
 
