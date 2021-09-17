@@ -10,7 +10,7 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 Source0: %{name}.service
 Source1: %{name}.conf
 Source2: alerts.yml
-# 
+
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -43,6 +43,7 @@ cp vmalert-prod %{buildroot}%{_bindir}/vmalert-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
+/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
 
 %post
 %if %use_systemd
