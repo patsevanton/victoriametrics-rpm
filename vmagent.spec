@@ -1,6 +1,6 @@
 Name:    vmagent
 Version: 1.65.0
-Release: 4
+Release: 5
 Summary: vmagent is a tiny but mighty agent which helps you collect metrics from various sources and store them in VictoriaMetrics or any other Prometheus-compatible storage systems that support the remote_write protocol.
 
 Group:   Development Tools
@@ -34,7 +34,7 @@ tar -zxf vmutils.tar.gz
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmagent
 cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmagent/
 cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmagent/
-%{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
+%{__install} -m 0755 -d %{buildroot}/var/lib/vmagent-remotewrite-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
@@ -43,7 +43,7 @@ cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
-/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
+/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -m -d /home/victoriametrics -s /bin/bash -g victoriametrics victoriametrics
 
 %post
 %if %use_systemd
@@ -63,6 +63,7 @@ cp vmagent-prod %{buildroot}%{_bindir}/vmagent-prod
 %files
 %{_bindir}/vmagent-prod
 %dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmagent
+%dir %attr(0775, victoriametrics, victoriametrics) /var/lib/vmagent-remotewrite-data
 %config /etc/victoriametrics/vmagent/vmagent.conf
 %config /etc/victoriametrics/vmagent/prometheus.yml
 %if %{use_systemd}

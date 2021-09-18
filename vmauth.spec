@@ -1,6 +1,6 @@
 Name:    vmauth
 Version: 1.65.0
-Release: 4
+Release: 5
 Summary: vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 Group:   Development Tools
@@ -34,7 +34,6 @@ tar -zxf vmutils.tar.gz
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmauth
 cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmauth/
 cp %{SOURCE2} %{buildroot}/etc/victoriametrics/vmauth/
-%{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
@@ -43,7 +42,7 @@ cp vmauth-prod %{buildroot}%{_bindir}/vmauth-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
-/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-data -s /bin/bash -g victoriametrics victoriametrics
+/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -m -d /home/victoriametrics -s /bin/bash -g victoriametrics victoriametrics
 
 %post
 %if %use_systemd
