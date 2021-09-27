@@ -3,6 +3,8 @@ RPM for VictoriaMetrics - the best long-term remote storage for Prometheus
 
 [![Copr build status](https://copr.fedorainfracloud.org/coprs/antonpatsev/VictoriaMetrics/package/victoriametrics/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/antonpatsev/VictoriaMetrics/package/victoriametrics/)
 
+Before install disable Selinux. Info https://github.com/patsevanton/victoriametrics-rpm/issues/10
+
 ## Installation with yum
 Support CentOS 6, CentOS 7, Oraclelinux 7
 
@@ -22,6 +24,12 @@ yum -y install vmagent
 yum -y install vmalert
 
 yum -y install vmauth
+
+yum -y install vmbackup
+
+yum -y install vmrestore
+
+yum -y install vmctl
 ```
 
 ## Installation with dnf
@@ -43,4 +51,10 @@ dnf -y install vmagent
 dnf -y install vmalert
 
 dnf -y install vmauth
+
+dnf -y install vmbackup
+
+dnf -y install vmrestore
+
+dnf -y install vmctl
 ```
