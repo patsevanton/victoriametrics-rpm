@@ -1,6 +1,6 @@
 Name:    vmauth
 Version: 1.66.0
-Release: 1
+Release: 2
 Summary: vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 Group:   Development Tools
@@ -46,7 +46,7 @@ cp vmauth-prod %{buildroot}%{_bindir}/vmauth-prod
 
 %post
 %if %use_systemd
-/usr/bin/systemctl daemon-reload
+/usr/bin/echo "Note: /etc/victoriametrics/vmauth/config contains examples. You should change this default config up to your needs and then start systemd service."
 %endif
 
 %preun
