@@ -5,7 +5,8 @@ Summary: vmrestore restores data from backups created by vmbackup. VictoriaMetri
 
 Group:   Development Tools
 License: ASL 2.0
-URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz
+URL:     https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz
+%undefine _disable_source_fetch
 
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
