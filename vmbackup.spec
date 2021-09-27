@@ -5,8 +5,9 @@ Summary: vmbackup creates VictoriaMetrics data backups from instant snapshots.
 
 Group:   Development Tools
 License: ASL 2.0
+URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz
 
-Source0: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz
+Source0: LICENSE
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -14,7 +15,7 @@ Requires(postun): /usr/sbin/userdel
 vmbackup creates VictoriaMetrics data backups from instant snapshots.
 
 %prep
-curl -L %{SOURCE0} > vmutils.tar.gz
+curl -L %{url} > vmutils.tar.gz
 tar -zxf vmutils.tar.gz
 
 %install
