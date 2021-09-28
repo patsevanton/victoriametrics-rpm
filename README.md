@@ -9,52 +9,52 @@ Before install disable Selinux. Info https://github.com/patsevanton/victoriametr
 Support CentOS 6, CentOS 7, Oraclelinux 7
 
 ```
-yum -y install yum-plugin-copr
+sudo yum -y install yum-plugin-copr
 
-yum -y copr enable antonpatsev/VictoriaMetrics
+sudo yum -y copr enable antonpatsev/VictoriaMetrics
 
-yum makecache
+sudo yum makecache
 
-yum -y install victoriametrics
+sudo yum -y install victoriametrics
 
-systemctl start victoriametrics
+sudo systemctl start victoriametrics
 
-yum -y install vmagent
+sudo yum -y install vmagent
 
-yum -y install vmalert
+sudo yum -y install vmalert
 
-yum -y install vmauth
+sudo yum -y install vmauth
 
-yum -y install vmbackup
+sudo yum -y install vmbackup
 
-yum -y install vmrestore
+sudo yum -y install vmrestore
 
-yum -y install vmctl
+sudo yum -y install vmctl
 ```
 
 ## Installation with dnf
 Support CentOS 8, CentOS-stream 8, CentOS-stream 9, Oraclelinux 8, Fedora 33,34,35
 
 ```
-dnf -y install yum-plugin-copr
+sudo dnf -y install yum-plugin-copr
 
-dnf -y copr enable antonpatsev/VictoriaMetrics
+sudo dnf -y copr enable antonpatsev/VictoriaMetrics
 
-dnf makecache
+sudo dnf makecache
 
-dnf -y install victoriametrics
+sudo dnf -y install victoriametrics
 
-systemctl start victoriametrics
+sudo systemctl start victoriametrics
 
-dnf -y install vmagent
+sudo dnf -y install vmagent
 
-dnf -y install vmalert
+sudo dnf -y install vmalert
 
-dnf -y install vmauth
+sudo dnf -y install vmauth
 
-dnf -y install vmbackup
+sudo dnf -y install vmbackup
 
-dnf -y install vmrestore
+sudo dnf -y install vmrestore
 
-dnf -y install vmctl
+sudo dnf -y install vmctl
 ```
