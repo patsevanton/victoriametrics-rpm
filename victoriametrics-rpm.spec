@@ -1,5 +1,5 @@
 Name:    victoriametrics
-Version: 1.66.1
+Version: 1.66.2
 Release: 1
 Summary: VictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.
 
