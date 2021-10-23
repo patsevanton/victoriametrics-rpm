@@ -58,3 +58,6 @@ sudo dnf -y install vmrestore
 
 sudo dnf -y install vmctl
 ```
+
+
+# The update of the victoriametrics package will be released with a delay. Please use the vmsingle package.
