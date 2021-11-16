@@ -30,7 +30,7 @@ tar -zxf victoria-metrics-amd64-cluster.tar.gz
 
 %install
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
-%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vminsert
+%{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmcluster
 cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmcluster/
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
