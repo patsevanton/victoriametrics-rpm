@@ -19,6 +19,9 @@ ExecReload=/bin/kill -HUP $MAINPID
 LimitNOFILE=1048576
 LimitNPROC=1048576
 LimitCORE=infinity
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=vmagent
 
 [Install]
 WantedBy=multi-user.target
