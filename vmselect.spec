@@ -1,5 +1,5 @@
 Name:    vmselect
-Version: 1.69.0
+Version: 1.70.0
 Release: 1
 Summary:  accepts the ingested data and spreads it among vmselect nodes according to consistent hashing over metric name and all its labels
 
