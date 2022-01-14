@@ -22,6 +22,8 @@ LimitCORE=infinity
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=vmstorage
+WorkingDirectory=/var/lib/victoria-metrics-cluster-data
+
 
 [Install]
 WantedBy=multi-user.target

@@ -19,9 +19,17 @@ ExecReload=/bin/kill -HUP $MAINPID
 LimitNOFILE=1048576
 LimitNPROC=1048576
 LimitCORE=infinity
+WorkingDirectory=/var/lib/vmagent-remotewrite-data
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=vmagent
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
 
 [Install]
 WantedBy=multi-user.target
