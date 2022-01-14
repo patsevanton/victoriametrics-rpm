@@ -32,6 +32,7 @@ tar -zxf victoria-metrics-amd64-cluster.tar.gz
 %{__install} -m 0755 -d %{buildroot}%{_bindir}
 %{__install} -m 0755 -d %{buildroot}/etc/victoriametrics/vmcluster
 cp %{SOURCE1} %{buildroot}/etc/victoriametrics/vmcluster/
+%{__install} -m 0755 -d %{buildroot}/var/lib/victoria-metrics-cluster-data
 %if %{use_systemd}
 %{__mkdir} -p %{buildroot}%{_unitdir}
 %{__install} -m644 %{SOURCE0} %{buildroot}%{_unitdir}/%{name}.service
@@ -40,7 +41,11 @@ cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 
 %pre
 /usr/bin/getent group victoriametrics > /dev/null || /usr/sbin/groupadd -r victoriametrics
-/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -m -d /home/victoriametrics -s /bin/bash -g victoriametrics victoriametrics
+/usr/bin/getent passwd victoriametrics > /dev/null || /usr/sbin/useradd -r -d /var/lib/victoria-metrics-cluster-data -s /bin/bash -g victoriametrics victoriametrics
+%{__mkdir} -p /var/lib/victoria-metrics-cluster-data
+/usr/bin/echo "WARINING: chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data"
+/usr/bin/echo "THIS MAY TAKE SOME TIME"
+/usr/bin/chown -R victoriametrics:victoriametrics /var/lib/victoria-metrics-cluster-data
 
 %post
 %if %use_systemd
@@ -60,6 +65,7 @@ cp vmstorage-prod %{buildroot}%{_bindir}/vmstorage-prod
 %files
 %{_bindir}/vmstorage-prod
 %dir %attr(0775, victoriametrics, victoriametrics) /etc/victoriametrics/vmcluster
+%dir %attr(0775, victoriametrics, victoriametrics) /var/lib/victoria-metrics-cluster-data
 %config /etc/victoriametrics/vmcluster/vmstorage.conf
 %if %{use_systemd}
 %{_unitdir}/vmstorage.service
