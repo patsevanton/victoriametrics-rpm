@@ -20,6 +20,18 @@ ExecReload=/bin/kill -HUP $MAINPID
 LimitNOFILE=1048576
 LimitNPROC=1048576
 LimitCORE=infinity
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=victoriametrics
+WorkingDirectory=/var/lib/victoria-metrics-data
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
 
 [Install]
 WantedBy=multi-user.target
