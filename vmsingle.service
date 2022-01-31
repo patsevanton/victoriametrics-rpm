@@ -8,6 +8,7 @@ Type=simple
 User=victoriametrics
 Group=victoriametrics
 WorkingDirectory=/var/lib/victoria-metrics-data
+ReadWritePaths=/var/lib/victoria-metrics-data
 StartLimitBurst=5
 StartLimitInterval=0
 Restart=on-failure

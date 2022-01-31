@@ -22,6 +22,14 @@ LimitCORE=infinity
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=vminsert
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
 
 [Install]
 WantedBy=multi-user.target
