@@ -1,6 +1,6 @@
 Name:    vmstorage
 Version: 1.72.0
-Release: 1
+Release: 2
 Summary:  accepts the ingested data and spreads it among vmstorage nodes according to consistent hashing over metric name and all its labels
 
 Group:   Development Tools
