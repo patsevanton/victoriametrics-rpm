@@ -23,7 +23,14 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=vmstorage
 WorkingDirectory=/var/lib/victoria-metrics-cluster-data
-
+ReadWritePaths=/var/lib/victoria-metrics-cluster-data
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
 
 [Install]
 WantedBy=multi-user.target

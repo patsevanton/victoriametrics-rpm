@@ -20,6 +20,7 @@ LimitNOFILE=1048576
 LimitNPROC=1048576
 LimitCORE=infinity
 WorkingDirectory=/var/lib/vmagent-remotewrite-data
+ReadWritePaths=/var/lib/vmagent-remotewrite-data
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=vmagent
