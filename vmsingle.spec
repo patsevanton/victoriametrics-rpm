@@ -1,6 +1,6 @@
 Name:    vmsingle
-Version: 1.72.0
-Release: 3
+Version: 1.73.0
+Release: 1
 Summary: The best long-term remote storage for Prometheus
 
 Group:   Development Tools
