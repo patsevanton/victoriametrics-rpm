@@ -1,5 +1,5 @@
 Name:    vmbackup
-Version: 1.77.0
+Version: 1.77.1
 Release: 1
 Summary: vmbackup creates VictoriaMetrics data backups from instant snapshots.
 

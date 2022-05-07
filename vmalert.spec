@@ -1,5 +1,5 @@
 Name:    vmalert
-Version: 1.77.0
+Version: 1.77.1
 Release: 1
 Summary: vmalert executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
