@@ -5,7 +5,7 @@ Summary: vmauth executes a list of the given alerting or recording rules against
 
 Group:   Development Tools
 License: ASL 2.0
-URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-amd64-v%{version}.tar.gz
+URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-linux-amd64-v%{version}.tar.gz
 
 Source0: %{name}.service
 Source1: %{name}.conf

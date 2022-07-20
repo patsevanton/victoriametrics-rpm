@@ -5,7 +5,7 @@ Summary:  accepts the ingested data and spreads it among vmstorage nodes accordi
 
 Group:   Development Tools
 License: ASL 2.0
-URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-amd64-v%{version}-cluster.tar.gz
+URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-linux-amd64-v%{version}-cluster.tar.gz
 
 Source0: %{name}.service
 Source1: %{name}.conf
