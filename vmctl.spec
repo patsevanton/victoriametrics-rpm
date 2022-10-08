@@ -11,6 +11,8 @@ Source0: LICENSE
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
+BuildRequires: curl
+
 %description
 VictoriaMetrics command-line tool
 

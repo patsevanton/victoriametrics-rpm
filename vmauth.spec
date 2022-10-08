@@ -19,7 +19,7 @@ Requires(postun): /usr/sbin/userdel
 
 %if %{use_systemd}
 Requires: systemd
-BuildRequires: systemd
+BuildRequires: systemd, curl
 %endif
 
 %description

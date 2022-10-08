@@ -50,7 +50,7 @@ sudo dnf -y install vmstorage
 
 ```
 sudo yum -y install yum-plugin-copr
-sudo yum -y copr enable antonpatsev/VictoriaMetrics
+sudo yum -y copr enable denisgolius/VictoriaMetrics
 sudo yum makecache
 sudo yum -y install vmagent
 sudo yum -y install vmalert
