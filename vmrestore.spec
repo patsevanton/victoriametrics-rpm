@@ -8,6 +8,7 @@ License: ASL 2.0
 URL:     https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/vmutils-linux-amd64-v%{version}.tar.gz
 
 Source0: LICENSE
+BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -15,6 +16,7 @@ Requires(postun): /usr/sbin/userdel
 vmrestore restores data from backups created by vmbackup. VictoriaMetrics v1.29.0 and newer versions must be used for working with the restored data.
 
 %prep
+BuildRequires: curl
 curl -L %{url} > vmutils.tar.gz
 tar -zxf vmutils.tar.gz
 

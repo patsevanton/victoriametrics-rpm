@@ -11,6 +11,7 @@ Source0: %{name}.service
 Source1: %{name}.conf
 Source2: config.yml
 
+BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -19,13 +20,14 @@ Requires(postun): /usr/sbin/userdel
 
 %if %{use_systemd}
 Requires: systemd
-BuildRequires: systemd, curl
+BuildRequires: systemd
 %endif
 
 %description
 vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
 %prep
+BuildRequires: curl
 curl -L %{url} > vmutils.tar.gz
 tar -zxf vmutils.tar.gz
 

@@ -10,6 +10,7 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 Source0: %{name}.service
 Source1: %{name}.conf
 
+BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -18,13 +19,14 @@ Requires(postun): /usr/sbin/userdel
 
 %if %{use_systemd}
 Requires: systemd
-BuildRequires: systemd, curl
+BuildRequires: systemd
 %endif
 
 %description
 vmselect accepts the ingested data and spreads it among vmselect nodes according to consistent hashing over metric name and all its labels
 
 %prep
+BuildRequires: curl
 curl -L %{url} > victoria-metrics-amd64-cluster.tar.gz
 tar -zxf victoria-metrics-amd64-cluster.tar.gz
 

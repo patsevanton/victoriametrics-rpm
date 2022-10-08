@@ -8,7 +8,8 @@ License: ASL 2.0
 URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{version}/victoria-metrics-linux-amd64-v%{version}.tar.gz
 
 Source0: %{name}.service
-Source1: victoriametrics.conf
+Source1: vmsingle.conf
+BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 
@@ -17,13 +18,14 @@ Requires(postun): /usr/sbin/userdel
 
 %if %{use_systemd}
 Requires: systemd
-BuildRequires: systemd, curl
+BuildRequires: systemd
 %endif
 
 %description
 VictoriaMetrics - the best long-term remote storage for Prometheus
 
 %prep
+BuildRequires: curl
 curl -L %{url} > victoria-metrics.tar.gz
 tar -zxf victoria-metrics.tar.gz
 
