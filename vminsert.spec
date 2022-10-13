@@ -10,7 +10,6 @@ URL: https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v%{ver
 Source0: %{name}.service
 Source1: %{name}.conf
 
-BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 

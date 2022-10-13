@@ -17,7 +17,6 @@ Requires(postun): /usr/sbin/userdel
 VictoriaMetrics command-line tool
 
 %prep
-BuildRequires: curl
 curl -L %{url} > vmutils.tar.gz
 tar -zxf vmutils.tar.gz
 

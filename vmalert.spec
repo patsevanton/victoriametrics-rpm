@@ -11,7 +11,6 @@ Source0: %{name}.service
 Source1: %{name}.conf
 Source2: alerts.yml
 
-BuildRequires: curl
 Requires(pre): /usr/sbin/useradd, /usr/bin/getent, /usr/bin/echo, /usr/bin/chown
 Requires(postun): /usr/sbin/userdel
 

@@ -18,13 +18,14 @@ Requires(postun): /usr/sbin/userdel
 
 %if %{use_systemd}
 Requires: systemd
-BuildRequires: systemd, curl
+BuildRequires: systemd
 %endif
 
 %description
 vmstorage accepts the ingested data and spreads it among vmstorage nodes according to consistent hashing over metric name and all its labels
 
 %prep
+BuildRequires: curl
 curl -L %{url} > victoria-metrics-amd64-cluster.tar.gz
 tar -zxf victoria-metrics-amd64-cluster.tar.gz
 
