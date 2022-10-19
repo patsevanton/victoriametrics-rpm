@@ -1,5 +1,5 @@
 Name:    vmctl
-Version: 1.81.2
+Version: 1.82.1
 Release: 1
 Summary: VictoriaMetrics command-line tool
 
