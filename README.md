@@ -44,5 +44,5 @@ sudo dnf -y install vmstorage
 ```
 
 
-# The update of the victoriametrics package will be released with a delay. Please use the vmsingle package.
+# The update of the victoriametrics package will be released with a delay because victoriametrics package is deprecated. Please use the vmsingle package.
 
