@@ -1,5 +1,5 @@
 Name:    vminsert
-Version: 1.86.0
+Version: 1.86.1
 Release: 1
 Summary:  accepts the ingested data and spreads it among vmstorage nodes according to consistent hashing over metric name and all its labels
 
