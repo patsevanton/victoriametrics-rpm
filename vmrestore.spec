@@ -1,5 +1,5 @@
 Name:    vmrestore
-Version: 1.97.1
+Version: 1.98.0
 Release: 1
 Summary: vmrestore restores data from backups created by vmbackup. VictoriaMetrics v1.29.0 and newer versions must be used for working with the restored data.
 

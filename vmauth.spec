@@ -1,5 +1,5 @@
 Name:    vmauth
-Version: 1.97.1
+Version: 1.98.0
 Release: 1
 Summary: vmauth executes a list of the given alerting or recording rules against configured address. It is heavily inspired by Prometheus implementation and aims to be compatible with its syntax.
 
